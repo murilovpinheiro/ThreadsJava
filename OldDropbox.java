@@ -1,30 +1,25 @@
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Stack;
 
-public class OldDropbox {
+public class OldDropbox extends Dropbox{
     private Deque<Integer> dequeOfNumbers = new LinkedList<>();
 
     public int take(final boolean even) {
-        Stack<Integer> temporaryStack = new Stack<>();
+        Iterator<Integer> iterator = dequeOfNumbers.iterator();
 
-        while (!dequeOfNumbers.isEmpty()) {
-            int newNumber = dequeOfNumbers.removeFirst();
-            if ((newNumber % 2 == 0) == even) {
-                System.out.format("%s CONSUMIDOR obtem %d.%n", even ? "PAR" : "IMPAR", newNumber);
-                return newNumber; // Retorna o número encontrado
-            } else {
-                temporaryStack.add(newNumber);
+        while (iterator.hasNext()) {
+            int currentNumber = iterator.next();
+            if ((currentNumber % 2 == 0) == even) {
+                System.out.format("%s CONSUMIDOR obtem %d.%n", even ? "PAR" : "IMPAR", currentNumber);
+                iterator.remove(); // Remove o número encontrado
+                return currentNumber;
             }
-        }
-
-        while (!temporaryStack.isEmpty()) {
-            int oldNumber = temporaryStack.pop();
-            dequeOfNumbers.addFirst(oldNumber);
         }
 
         return -1; // Retorna -1 se nenhum número adequado for encontrado
     }
+
 
     public void put(int number) {
         System.out.format("PRODUTOR gera %d.%n", number);

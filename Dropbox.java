@@ -3,6 +3,7 @@ public class Dropbox {
     private boolean evenNumber = false;
     private boolean taken = true;
     public int take(final boolean even) {
+
         if(evenNumber == even && !taken){
             System.out.format("%s CONSUMIDOR obtem %d.%n", even ? "PAR" : "IMPAR", number);
             taken = true;

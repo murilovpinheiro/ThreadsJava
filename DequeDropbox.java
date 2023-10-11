@@ -2,7 +2,7 @@ import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class OldDropbox extends Dropbox{
+public class DequeDropbox extends Dropbox{
     private Deque<Integer> dequeOfNumbers = new LinkedList<>();
 
     public int take(final boolean even) {
